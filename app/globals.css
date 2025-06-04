@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* CSS CHO THANH TIẾN TRÌNH MUA HÀNG Ở PAGE PAYMENT */
+/* Container cho thanh tiến trình */
+.progress-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+/* Styling cho mỗi bước */
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* Styling cho vòng tròn */
+.step-circle {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Vòng tròn bước 1 và 2 sẽ tự động active khi tải trang */
+.step-circle.step-1,
+.step-circle.step-2 {
+  animation: pulse 0.5s ease-in-out;
+}
+
+/* Hiệu ứng pulse cho vòng tròn */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Styling cho thanh tiến trình */
+.progress-line {
+  height: 0.25rem;
+  flex: 1;
+  background-color: #e5e7eb;
+  /* gray-200 */
+  margin: 0 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Thanh tiến trình đầu tiên sẽ tự động đầy khi tải trang */
+.progress-line.first {
+  position: relative;
+}
+
+.progress-line.first::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background-color: #ebbd5b;
+  animation: fillLine 1s ease-in-out forwards;
+  animation-delay: 0.5s;
+  /* Chờ 0.5s trước khi thanh đầy */
+}
+
+/* Hiệu ứng đầy cho thanh tiến trình */
+@keyframes fillLine {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+/* Styling cho text bên dưới vòng tròn */
+.step-text {
+  font-size: 0.875rem;
+  /* text-sm */
+  color: #6b7280;
+  /* gray-500 */
+  transition: color 0.3s ease;
+}
+
+/* Text cho bước 1 và 2 sẽ đổi màu khi tải trang */
+.step.step-1 .step-text,
+.step.step-2 .step-text {
+  color: #ebbd5b;
+}
+
+/* ------------------------------------------------------------------------------------- */
+
+/* CSS HIỆU ỨNG FADE IN-OUT CHO PAGE USER */
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.group:hover .fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* _______________________________________________________________________________________ */
+/* CSS HIỆU ỨNG SIDEBAR CHO PAGE PRODUCTS */
+
+/* Ẩn thanh cuộn cho Webkit (Chrome, Safari, Edge) */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ẩn thanh cuộn cho Firefox */
+.hide-scrollbar {
+  scrollbar-width: none;
+  /* Ẩn thanh cuộn */
+  -ms-overflow-style: none;
+  /* Ẩn thanh cuộn cho IE 10+ */
+}
